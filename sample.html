@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Hello World</title>
+		<script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+		<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+		<script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+	</head>
+	<body>
+		<div id="mytag" />
+		<script type="text/babel">
+			function sum(a,b){
+				return a + b
+			}
+			const userName = {fname:'John',lname:'Smith'};
+			function fullName(user){
+				return user.fname + " " + user.lname
+			}
+			function Wish(args){
+				return "[Function] Hello " + args.name
+			}
+			class WishCls extends React.Component
+			{
+				render(){
+					return <p>[Class] Hello {this.props.name}</p>
+				}
+			}
+			class TestState extends React.Component
+			{
+				constructor(props){
+					super(props);
+					this.state={textValue:this.props.name};
+					this.assignText=this.assignText.bind(this);
+				}
+				assignText(event){
+					this.setState({textValue:event.target.value});
+				}
+				render(){
+					return(
+						<div><input type="text" value={this.state.textValue} onChange={this.assignText} />
+						<p>{this.state.textValue}</p></div>
+					)
+				}
+			}
+			const element = (<div><p>Sum of a and b is {sum(100,11)}</p>
+								<p>Welcome {fullName(userName)}</p>
+								<p><Wish name="Rathan" /></p>
+								<div><WishCls name="Vikash" /></div>
+								<TestState name="" /></div>);
+			ReactDOM.render(
+				element, document.getElementById("mytag")
+			);
+		</script>
+	</body>	
+</html>
